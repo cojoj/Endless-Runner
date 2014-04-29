@@ -12,18 +12,10 @@
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.currentBackground = [Background generateNewBackground];
+        [self addChild:self.currentBackground];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
     }
     return self;
 }
@@ -48,6 +40,12 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    [self enumerateChildNodesWithName:@"theLabel" usingBlock:^(SKNode *node, BOOL *stop) {
+        node.position = CGPointMake(node.position.x - 2, node.position.y);
+        if (node.position.x < - node.frame.size.width) {
+            node.position = CGPointMake(self.frame.size.width, node.position.y);
+        }
+    }];
 }
 
 @end

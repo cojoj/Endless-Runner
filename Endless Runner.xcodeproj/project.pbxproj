@@ -24,6 +24,7 @@
 		707655911910543800B67195 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556C1910543800B67195 /* UIKit.framework */; };
 		707655991910543800B67195 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 707655971910543800B67195 /* InfoPlist.strings */; };
 		7076559B1910543800B67195 /* Endless_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7076559A1910543800B67195 /* Endless_RunnerTests.m */; };
+		707655A719105DB800B67195 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655A619105DB800B67195 /* Background.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,9 @@
 		707655961910543800B67195 /* Endless RunnerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Endless RunnerTests-Info.plist"; sourceTree = "<group>"; };
 		707655981910543800B67195 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7076559A1910543800B67195 /* Endless_RunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Endless_RunnerTests.m; sourceTree = "<group>"; };
+		707655A419105CF300B67195 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		707655A519105DB800B67195 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		707655A619105DB800B67195 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 		707655701910543800B67195 /* Endless Runner */ = {
 			isa = PBXGroup;
 			children = (
+				707655A519105DB800B67195 /* Background.h */,
+				707655A619105DB800B67195 /* Background.m */,
 				707655791910543800B67195 /* AppDelegate.h */,
 				7076557A1910543800B67195 /* AppDelegate.m */,
 				7076557C1910543800B67195 /* Main.storyboard */,
@@ -129,6 +135,7 @@
 				707655821910543800B67195 /* MyScene.h */,
 				707655831910543800B67195 /* MyScene.m */,
 				707655851910543800B67195 /* Spaceship.png */,
+				707655A419105CF300B67195 /* Common.h */,
 				707655871910543800B67195 /* Images.xcassets */,
 				707655711910543800B67195 /* Supporting Files */,
 			);
@@ -265,6 +272,7 @@
 				707655841910543800B67195 /* MyScene.m in Sources */,
 				707655811910543800B67195 /* ViewController.m in Sources */,
 				7076557B1910543800B67195 /* AppDelegate.m in Sources */,
+				707655A719105DB800B67195 /* Background.m in Sources */,
 				707655771910543800B67195 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

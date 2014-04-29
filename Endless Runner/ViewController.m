@@ -15,6 +15,13 @@
 {
     [super viewDidLoad];
 
+    //
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
