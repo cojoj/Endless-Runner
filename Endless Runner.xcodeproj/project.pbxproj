@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		707655691910543800B67195 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707655681910543800B67195 /* Foundation.framework */; };
+		7076556B1910543800B67195 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556A1910543800B67195 /* CoreGraphics.framework */; };
+		7076556D1910543800B67195 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556C1910543800B67195 /* UIKit.framework */; };
+		7076556F1910543800B67195 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556E1910543800B67195 /* SpriteKit.framework */; };
+		707655751910543800B67195 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 707655731910543800B67195 /* InfoPlist.strings */; };
+		707655771910543800B67195 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655761910543800B67195 /* main.m */; };
+		7076557B1910543800B67195 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7076557A1910543800B67195 /* AppDelegate.m */; };
+		7076557E1910543800B67195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7076557C1910543800B67195 /* Main.storyboard */; };
+		707655811910543800B67195 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655801910543800B67195 /* ViewController.m */; };
+		707655841910543800B67195 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655831910543800B67195 /* MyScene.m */; };
+		707655861910543800B67195 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 707655851910543800B67195 /* Spaceship.png */; };
+		707655881910543800B67195 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 707655871910543800B67195 /* Images.xcassets */; };
+		7076558F1910543800B67195 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076558E1910543800B67195 /* XCTest.framework */; };
+		707655901910543800B67195 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707655681910543800B67195 /* Foundation.framework */; };
+		707655911910543800B67195 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556C1910543800B67195 /* UIKit.framework */; };
+		707655991910543800B67195 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 707655971910543800B67195 /* InfoPlist.strings */; };
+		7076559B1910543800B67195 /* Endless_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7076559A1910543800B67195 /* Endless_RunnerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		707655921910543800B67195 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7076555D1910543800B67195 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 707655641910543800B67195;
+			remoteInfo = "Endless Runner";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		707655651910543800B67195 /* Endless Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		707655681910543800B67195 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7076556A1910543800B67195 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7076556C1910543800B67195 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7076556E1910543800B67195 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		707655721910543800B67195 /* Endless Runner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Endless Runner-Info.plist"; sourceTree = "<group>"; };
+		707655741910543800B67195 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		707655761910543800B67195 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		707655781910543800B67195 /* Endless Runner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Endless Runner-Prefix.pch"; sourceTree = "<group>"; };
+		707655791910543800B67195 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7076557A1910543800B67195 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7076557D1910543800B67195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7076557F1910543800B67195 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		707655801910543800B67195 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		707655821910543800B67195 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
+		707655831910543800B67195 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		707655851910543800B67195 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		707655871910543800B67195 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7076558D1910543800B67195 /* Endless RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Endless RunnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7076558E1910543800B67195 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		707655961910543800B67195 /* Endless RunnerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Endless RunnerTests-Info.plist"; sourceTree = "<group>"; };
+		707655981910543800B67195 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7076559A1910543800B67195 /* Endless_RunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Endless_RunnerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		707655621910543800B67195 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7076556B1910543800B67195 /* CoreGraphics.framework in Frameworks */,
+				7076556D1910543800B67195 /* UIKit.framework in Frameworks */,
+				7076556F1910543800B67195 /* SpriteKit.framework in Frameworks */,
+				707655691910543800B67195 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7076558A1910543800B67195 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7076558F1910543800B67195 /* XCTest.framework in Frameworks */,
+				707655911910543800B67195 /* UIKit.framework in Frameworks */,
+				707655901910543800B67195 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7076555C1910543800B67195 = {
+			isa = PBXGroup;
+			children = (
+				707655701910543800B67195 /* Endless Runner */,
+				707655941910543800B67195 /* Endless RunnerTests */,
+				707655671910543800B67195 /* Frameworks */,
+				707655661910543800B67195 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		707655661910543800B67195 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				707655651910543800B67195 /* Endless Runner.app */,
+				7076558D1910543800B67195 /* Endless RunnerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		707655671910543800B67195 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				707655681910543800B67195 /* Foundation.framework */,
+				7076556A1910543800B67195 /* CoreGraphics.framework */,
+				7076556C1910543800B67195 /* UIKit.framework */,
+				7076556E1910543800B67195 /* SpriteKit.framework */,
+				7076558E1910543800B67195 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		707655701910543800B67195 /* Endless Runner */ = {
+			isa = PBXGroup;
+			children = (
+				707655791910543800B67195 /* AppDelegate.h */,
+				7076557A1910543800B67195 /* AppDelegate.m */,
+				7076557C1910543800B67195 /* Main.storyboard */,
+				7076557F1910543800B67195 /* ViewController.h */,
+				707655801910543800B67195 /* ViewController.m */,
+				707655821910543800B67195 /* MyScene.h */,
+				707655831910543800B67195 /* MyScene.m */,
+				707655851910543800B67195 /* Spaceship.png */,
+				707655871910543800B67195 /* Images.xcassets */,
+				707655711910543800B67195 /* Supporting Files */,
+			);
+			path = "Endless Runner";
+			sourceTree = "<group>";
+		};
+		707655711910543800B67195 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				707655721910543800B67195 /* Endless Runner-Info.plist */,
+				707655731910543800B67195 /* InfoPlist.strings */,
+				707655761910543800B67195 /* main.m */,
+				707655781910543800B67195 /* Endless Runner-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		707655941910543800B67195 /* Endless RunnerTests */ = {
+			isa = PBXGroup;
+			children = (
+				7076559A1910543800B67195 /* Endless_RunnerTests.m */,
+				707655951910543800B67195 /* Supporting Files */,
+			);
+			path = "Endless RunnerTests";
+			sourceTree = "<group>";
+		};
+		707655951910543800B67195 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				707655961910543800B67195 /* Endless RunnerTests-Info.plist */,
+				707655971910543800B67195 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		707655641910543800B67195 /* Endless Runner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7076559E1910543800B67195 /* Build configuration list for PBXNativeTarget "Endless Runner" */;
+			buildPhases = (
+				707655611910543800B67195 /* Sources */,
+				707655621910543800B67195 /* Frameworks */,
+				707655631910543800B67195 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Endless Runner";
+			productName = "Endless Runner";
+			productReference = 707655651910543800B67195 /* Endless Runner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7076558C1910543800B67195 /* Endless RunnerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 707655A11910543800B67195 /* Build configuration list for PBXNativeTarget "Endless RunnerTests" */;
+			buildPhases = (
+				707655891910543800B67195 /* Sources */,
+				7076558A1910543800B67195 /* Frameworks */,
+				7076558B1910543800B67195 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				707655931910543800B67195 /* PBXTargetDependency */,
+			);
+			name = "Endless RunnerTests";
+			productName = "Endless RunnerTests";
+			productReference = 7076558D1910543800B67195 /* Endless RunnerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7076555D1910543800B67195 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Mateusz Zajac";
+				TargetAttributes = {
+					7076558C1910543800B67195 = {
+						TestTargetID = 707655641910543800B67195;
+					};
+				};
+			};
+			buildConfigurationList = 707655601910543800B67195 /* Build configuration list for PBXProject "Endless Runner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7076555C1910543800B67195;
+			productRefGroup = 707655661910543800B67195 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				707655641910543800B67195 /* Endless Runner */,
+				7076558C1910543800B67195 /* Endless RunnerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		707655631910543800B67195 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				707655751910543800B67195 /* InfoPlist.strings in Resources */,
+				707655881910543800B67195 /* Images.xcassets in Resources */,
+				707655861910543800B67195 /* Spaceship.png in Resources */,
+				7076557E1910543800B67195 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7076558B1910543800B67195 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				707655991910543800B67195 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		707655611910543800B67195 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				707655841910543800B67195 /* MyScene.m in Sources */,
+				707655811910543800B67195 /* ViewController.m in Sources */,
+				7076557B1910543800B67195 /* AppDelegate.m in Sources */,
+				707655771910543800B67195 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		707655891910543800B67195 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7076559B1910543800B67195 /* Endless_RunnerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		707655931910543800B67195 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 707655641910543800B67195 /* Endless Runner */;
+			targetProxy = 707655921910543800B67195 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		707655731910543800B67195 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				707655741910543800B67195 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7076557C1910543800B67195 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7076557D1910543800B67195 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		707655971910543800B67195 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				707655981910543800B67195 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7076559C1910543800B67195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7076559D1910543800B67195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7076559F1910543800B67195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Endless Runner/Endless Runner-Prefix.pch";
+				INFOPLIST_FILE = "Endless Runner/Endless Runner-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		707655A01910543800B67195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Endless Runner/Endless Runner-Prefix.pch";
+				INFOPLIST_FILE = "Endless Runner/Endless Runner-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		707655A21910543800B67195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Endless Runner.app/Endless Runner";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Endless Runner/Endless Runner-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Endless RunnerTests/Endless RunnerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		707655A31910543800B67195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Endless Runner.app/Endless Runner";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Endless Runner/Endless Runner-Prefix.pch";
+				INFOPLIST_FILE = "Endless RunnerTests/Endless RunnerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		707655601910543800B67195 /* Build configuration list for PBXProject "Endless Runner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7076559C1910543800B67195 /* Debug */,
+				7076559D1910543800B67195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7076559E1910543800B67195 /* Build configuration list for PBXNativeTarget "Endless Runner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7076559F1910543800B67195 /* Debug */,
+				707655A01910543800B67195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		707655A11910543800B67195 /* Build configuration list for PBXNativeTarget "Endless RunnerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				707655A21910543800B67195 /* Debug */,
+				707655A31910543800B67195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7076555D1910543800B67195 /* Project object */;
+}
