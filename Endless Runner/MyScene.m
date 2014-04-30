@@ -23,22 +23,16 @@
     return self;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // Animations for move up and down
+    SKAction *moveUp = [SKAction moveBy:CGVectorMake(0, 100) duration:0.8];
+    SKAction *moveDown = [SKAction moveBy:CGVectorMake(0, -100) duration:0.8];
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
+    SKAction *seq = [SKAction sequence:@[moveUp, moveDown]];
+    
+    Player *player = (Player *)[self childNodeWithName:playerName];
+    [player runAction:seq];
 }
 
 -(void)update:(CFTimeInterval)currentTime
