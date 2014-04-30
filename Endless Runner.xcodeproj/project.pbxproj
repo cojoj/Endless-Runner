@@ -17,7 +17,6 @@
 		7076557E1910543800B67195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7076557C1910543800B67195 /* Main.storyboard */; };
 		707655811910543800B67195 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655801910543800B67195 /* ViewController.m */; };
 		707655841910543800B67195 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655831910543800B67195 /* MyScene.m */; };
-		707655861910543800B67195 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 707655851910543800B67195 /* Spaceship.png */; };
 		707655881910543800B67195 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 707655871910543800B67195 /* Images.xcassets */; };
 		7076558F1910543800B67195 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076558E1910543800B67195 /* XCTest.framework */; };
 		707655901910543800B67195 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707655681910543800B67195 /* Foundation.framework */; };
@@ -25,6 +24,7 @@
 		707655991910543800B67195 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 707655971910543800B67195 /* InfoPlist.strings */; };
 		7076559B1910543800B67195 /* Endless_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7076559A1910543800B67195 /* Endless_RunnerTests.m */; };
 		707655A719105DB800B67195 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655A619105DB800B67195 /* Background.m */; };
+		70DC2E731911921B0012885C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DC2E721911921B0012885C /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,6 @@
 		707655801910543800B67195 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		707655821910543800B67195 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		707655831910543800B67195 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		707655851910543800B67195 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		707655871910543800B67195 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7076558D1910543800B67195 /* Endless RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Endless RunnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7076558E1910543800B67195 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -64,6 +63,8 @@
 		707655A419105CF300B67195 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		707655A519105DB800B67195 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		707655A619105DB800B67195 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
+		70DC2E711911921B0012885C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		70DC2E721911921B0012885C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +135,8 @@
 				707655801910543800B67195 /* ViewController.m */,
 				707655821910543800B67195 /* MyScene.h */,
 				707655831910543800B67195 /* MyScene.m */,
-				707655851910543800B67195 /* Spaceship.png */,
+				70DC2E711911921B0012885C /* Player.h */,
+				70DC2E721911921B0012885C /* Player.m */,
 				707655A419105CF300B67195 /* Common.h */,
 				707655871910543800B67195 /* Images.xcassets */,
 				707655711910543800B67195 /* Supporting Files */,
@@ -249,7 +251,6 @@
 			files = (
 				707655751910543800B67195 /* InfoPlist.strings in Resources */,
 				707655881910543800B67195 /* Images.xcassets in Resources */,
-				707655861910543800B67195 /* Spaceship.png in Resources */,
 				7076557E1910543800B67195 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +274,7 @@
 				707655811910543800B67195 /* ViewController.m in Sources */,
 				7076557B1910543800B67195 /* AppDelegate.m in Sources */,
 				707655A719105DB800B67195 /* Background.m in Sources */,
+				70DC2E731911921B0012885C /* Player.m in Sources */,
 				707655771910543800B67195 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +482,7 @@
 				707655A01910543800B67195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		707655A11910543800B67195 /* Build configuration list for PBXNativeTarget "Endless RunnerTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +491,7 @@
 				707655A31910543800B67195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -13,5 +13,6 @@
 @interface MyScene : SKScene
 
 @property (strong, nonatomic) Background *currentBackground;
+@property (assign) CFTimeInterval lastUpdateInterval;
 
 @end

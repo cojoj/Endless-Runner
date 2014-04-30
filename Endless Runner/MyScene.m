@@ -7,6 +7,7 @@
 //
 
 #import "MyScene.h"
+#import "Player.h"
 
 @implementation MyScene
 
@@ -15,7 +16,9 @@
         
         self.currentBackground = [Background generateNewBackground];
         [self addChild:self.currentBackground];
-        
+        Player *player = [[Player alloc] init];
+        player.position = CGPointMake(100, 68);
+        [self addChild:player];
     }
     return self;
 }
@@ -38,13 +41,17 @@
     }
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-    [self enumerateChildNodesWithName:@"theLabel" usingBlock:^(SKNode *node, BOOL *stop) {
-        node.position = CGPointMake(node.position.x - 2, node.position.y);
-        if (node.position.x < - node.frame.size.width) {
-            node.position = CGPointMake(self.frame.size.width, node.position.y);
-        }
+-(void)update:(CFTimeInterval)currentTime
+{
+    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateInterval;
+    self.lastUpdateInterval = currentTime;
+    if (timeSinceLast > 1) {
+        // more than a second since last update
+        timeSinceLast = 1.0 / 60.0;
+    }
+    
+    [self enumerateChildNodesWithName:backgroundName usingBlock:^(SKNode *node, BOOL *stop) {
+        node.position = CGPointMake(node.position.x - backgroundMoveSpeed * timeSinceLast, node.position.y);
     }];
 }
 
