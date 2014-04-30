@@ -39,14 +39,26 @@
 {
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateInterval;
     self.lastUpdateInterval = currentTime;
+    
     if (timeSinceLast > 1) {
-        // more than a second since last update
         timeSinceLast = 1.0 / 60.0;
+        self.lastUpdateInterval = currentTime;
     }
     
     [self enumerateChildNodesWithName:backgroundName usingBlock:^(SKNode *node, BOOL *stop) {
         node.position = CGPointMake(node.position.x - backgroundMoveSpeed * timeSinceLast, node.position.y);
+        
+        if (node.position.x < - (node.frame.size.width + 100)) {
+            [node removeFromParent];
+        }
     }];
+    
+    if (self.currentBackground.position.x < -500) {
+        Background *temp = [Background generateNewBackground];
+        temp.position = CGPointMake(self.currentBackground.position.x + self.currentBackground.frame.size.width, 0);
+        [self addChild:temp];
+        self.currentBackground = temp;
+    }
 }
 
 @end

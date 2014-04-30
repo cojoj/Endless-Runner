@@ -15,6 +15,7 @@
     Background *background = [[Background alloc] initWithImageNamed:@"background.png"];
     background.anchorPoint = CGPointMake(0, 0);
     background.name = backgroundName;
+    background.zPosition = 1.0;
     background.position = CGPointMake(0, 0);
     
     return background;

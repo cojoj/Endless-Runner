@@ -10,7 +10,7 @@
 #define Endless_Runner_Common_h
 
 static NSString *backgroundName = @"background";
-static NSInteger backgroundMoveSpeed = 30;
+static NSInteger backgroundMoveSpeed = 100;
 static NSString *playerName = @"player";
 
 #endif
