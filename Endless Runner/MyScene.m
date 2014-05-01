@@ -77,6 +77,36 @@
     }
 }
 
+- (void)didMoveToView:(SKView *)view
+{
+    UISwipeGestureRecognizer *swiper = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGestureRight:)];
+    UISwipeGestureRecognizer *swiperTwo = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGestureLeft:)];
+    
+    [view addGestureRecognizer:swiper];
+    [view addGestureRecognizer:swiperTwo];
+}
+
+- (void)handleSwipeGestureRight:(UISwipeGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateRecognized) {
+        backgroundMoveSpeed += 50;
+    }
+}
+
+- (void)handleSwipeGestureLeft:(UISwipeGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateRecognized && backgroundMoveSpeed > 50) {
+        backgroundMoveSpeed -= 50;
+    }
+}
+
+- (void)willMoveFromView:(SKView *)view
+{
+    for (UIGestureRecognizer *recognizer in view.gestureRecognizers) {
+        [view removeGestureRecognizer:recognizer];
+    }
+}
+
 -(void)update:(CFTimeInterval)currentTime
 {
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateInterval;
