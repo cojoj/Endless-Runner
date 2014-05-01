@@ -14,5 +14,7 @@
 
 @property (strong, nonatomic) Background *currentBackground;
 @property (assign) CFTimeInterval lastUpdateInterval;
+@property (strong, nonatomic) SKLabelNode *scoreLabel;
+@property (assign) double score;
 
 @end

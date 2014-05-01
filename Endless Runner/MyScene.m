@@ -19,6 +19,21 @@
         Player *player = [[Player alloc] init];
         player.position = CGPointMake(100, 68);
         [self addChild:player];
+        
+        self.score = 0;
+        self.scoreLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        self.scoreLabel.fontSize = 15;
+        self.scoreLabel.color = [UIColor whiteColor];
+        self.scoreLabel.position = CGPointMake(20, 300);
+        self.scoreLabel.zPosition = 100;
+        [self addChild:self.scoreLabel];
+        
+        SKAction *tempAction = [SKAction runBlock:^{
+            self.scoreLabel.text = [NSString stringWithFormat:@"%3.0f", self.score];
+        }];
+        
+        SKAction *waitAction = [SKAction waitForDuration:0.2];
+        [self.scoreLabel runAction:[SKAction repeatActionForever:[SKAction sequence:@[tempAction, waitAction]]]];
     }
     return self;
 }
@@ -59,6 +74,8 @@
         [self addChild:temp];
         self.currentBackground = temp;
     }
+    
+    self.score = self.score + (backgroundMoveSpeed * timeSinceLast / 100);
 }
 
 @end
