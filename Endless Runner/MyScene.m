@@ -40,6 +40,15 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    UITouch *touch = [touches anyObject];
+    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:[touch locationInNode:self]];
+    
+    if (touchedNode.name == playerName) {
+        Player *player = (Player *)touchedNode;
+        player.selected = YES;
+        return;
+    }
+    
     // Animations for move up and down
     SKAction *moveUp = [SKAction moveBy:CGVectorMake(0, 100) duration:0.8];
     SKAction *moveDown = [SKAction moveBy:CGVectorMake(0, -100) duration:0.8];
@@ -48,6 +57,24 @@
     
     Player *player = (Player *)[self childNodeWithName:playerName];
     [player runAction:seq];
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    Player *player = (Player *)[self childNodeWithName:playerName];
+    if (player.selected) {
+        player.position = [touch locationInNode:self];
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    Player *player = (Player *)[self childNodeWithName:playerName];
+    if (player.selected) {
+        player.selected = NO;
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime

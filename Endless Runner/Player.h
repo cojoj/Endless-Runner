@@ -10,4 +10,6 @@
 
 @interface Player : SKSpriteNode
 
+@property (assign) BOOL selected;
+
 @end
