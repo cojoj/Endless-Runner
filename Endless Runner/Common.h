@@ -12,5 +12,6 @@
 static NSString *backgroundName = @"background";
 static NSInteger backgroundMoveSpeed = 100;
 static NSString *playerName = @"player";
+static NSInteger accelerometerMultiplier = 15;
 
 #endif

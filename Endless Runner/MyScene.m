@@ -34,8 +34,18 @@
         
         SKAction *waitAction = [SKAction waitForDuration:0.2];
         [self.scoreLabel runAction:[SKAction repeatActionForever:[SKAction sequence:@[tempAction, waitAction]]]];
+        
+        self.manager = [[CMMotionManager alloc] init];
+        self.manager.accelerometerUpdateInterval = 0.1;
+        [self.manager startAccelerometerUpdates];
+        [self performSelector:@selector(adjustBaseline) withObject:nil afterDelay:0.1];
     }
     return self;
+}
+
+- (void)adjustBaseline
+{
+    self.baseline = self.manager.accelerometerData.acceleration.x;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -133,6 +143,18 @@
     }
     
     self.score = self.score + (backgroundMoveSpeed * timeSinceLast / 100);
+    // NSLog(@"%@", self.manager.accelerometerData);
+    
+    Player *player = (Player *)[self childNodeWithName:playerName];
+    player.position = CGPointMake(player.position.x,
+                                  player.position.y - (self.manager.accelerometerData.acceleration.x - self.baseline) * accelerometerMultiplier);
+    if (player.position.y < 68) {
+        player.position = CGPointMake(player.position.x, 68);
+    }
+    
+    if (player.position.y > 252) {
+        player.position = CGPointMake(player.position.x, 252);
+    }
 }
 
 @end
