@@ -39,6 +39,8 @@
         self.manager.accelerometerUpdateInterval = 0.1;
         [self.manager startAccelerometerUpdates];
         [self performSelector:@selector(adjustBaseline) withObject:nil afterDelay:0.1];
+        
+        self.physicsWorld.gravity = CGVectorMake(0, globalGravity);
     }
     return self;
 }
@@ -48,52 +50,62 @@
     self.baseline = self.manager.accelerometerData.acceleration.x;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
-    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:[touch locationInNode:self]];
-    
-    if (touchedNode.name == playerName) {
-        Player *player = (Player *)touchedNode;
-        player.selected = YES;
-        return;
-    }
-    
-    // Animations for move up and down
-    SKAction *moveUp = [SKAction moveBy:CGVectorMake(0, 100) duration:0.8];
-    SKAction *moveDown = [SKAction moveBy:CGVectorMake(0, -100) duration:0.8];
-    
-    SKAction *seq = [SKAction sequence:@[moveUp, moveDown]];
-    
-    Player *player = (Player *)[self childNodeWithName:playerName];
-    [player runAction:seq];
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
-    
-    Player *player = (Player *)[self childNodeWithName:playerName];
-    if (player.selected) {
-        player.position = [touch locationInNode:self];
-    }
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    Player *player = (Player *)[self childNodeWithName:playerName];
-    if (player.selected) {
-        player.selected = NO;
-    }
-}
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UITouch *touch = [touches anyObject];
+//    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:[touch locationInNode:self]];
+//    
+//    if (touchedNode.name == playerName) {
+//        Player *player = (Player *)touchedNode;
+//        player.selected = YES;
+//        return;
+//    }
+//    
+//    // Animations for move up and down
+//    SKAction *moveUp = [SKAction moveBy:CGVectorMake(0, 100) duration:0.8];
+//    SKAction *moveDown = [SKAction moveBy:CGVectorMake(0, -100) duration:0.8];
+//    
+//    SKAction *seq = [SKAction sequence:@[moveUp, moveDown]];
+//    
+//    Player *player = (Player *)[self childNodeWithName:playerName];
+//    [player runAction:seq];
+//}
+//
+//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UITouch *touch = [touches anyObject];
+//    
+//    Player *player = (Player *)[self childNodeWithName:playerName];
+//    if (player.selected) {
+//        player.position = [touch locationInNode:self];
+//    }
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    Player *player = (Player *)[self childNodeWithName:playerName];
+//    if (player.selected) {
+//        player.selected = NO;
+//    }
+//}
 
 - (void)didMoveToView:(SKView *)view
 {
-    UISwipeGestureRecognizer *swiper = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGestureRight:)];
-    UISwipeGestureRecognizer *swiperTwo = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGestureLeft:)];
+//    UILongPressGestureRecognizer *tapper = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tappedScreen:)];
+//    tapper.minimumPressDuration = 0.1;
+//    [view addGestureRecognizer:tapper];
+}
+
+- (void)tappedScreen:(UITapGestureRecognizer *)recognizer
+{
+    Player *player = (Player *)[self childNodeWithName:@"player"];
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        player.accelerating = YES;
+    }
     
-    [view addGestureRecognizer:swiper];
-    [view addGestureRecognizer:swiperTwo];
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        player.accelerating = NO;
+    }
 }
 
 - (void)handleSwipeGestureRight:(UISwipeGestureRecognizer *)recognizer
@@ -155,6 +167,13 @@
     if (player.position.y > 252) {
         player.position = CGPointMake(player.position.x, 252);
     }
+    
+    [self enumerateChildNodesWithName:@"player" usingBlock:^(SKNode *node, BOOL *stop) {
+        Player *player = (Player *)node;
+        if (player.accelerating) {
+            [player.physicsBody applyForce:CGVectorMake(0, playerJumpForce * timeSinceLast)];
+        }
+    }];
 }
 
 @end

@@ -17,6 +17,15 @@
     background.name = backgroundName;
     background.zPosition = 1.0;
     background.position = CGPointMake(0, 0);
+    background.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0, 30) toPoint:CGPointMake(background.size.width, 30)];
+    background.physicsBody.collisionBitMask = playerCollisionBitmask;
+    
+    SKNode *topCollider = [SKNode node];
+    topCollider.position = CGPointMake(0, 0);
+    topCollider.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0, background.size.height - 30)
+                                                           toPoint:CGPointMake(background.size.width, background.size.height - 30)];
+    topCollider.physicsBody.collisionBitMask = 1;
+    [background addChild:topCollider];
     
     return background;
 }

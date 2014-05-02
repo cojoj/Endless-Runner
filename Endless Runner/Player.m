@@ -16,8 +16,12 @@
     {
         self.name = playerName;
         self.zPosition = 10.0;
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.size.width, self.size.height)];
+        self.physicsBody.dynamic = YES;
+        self.physicsBody.mass = playerMass;
+        self.physicsBody.collisionBitMask = playerCollisionBitmask;
+        self.physicsBody.allowsRotation = NO;
     }
-    
     return self;
 }
 

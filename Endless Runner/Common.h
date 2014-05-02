@@ -13,5 +13,9 @@ static NSString *backgroundName = @"background";
 static NSInteger backgroundMoveSpeed = 100;
 static NSString *playerName = @"player";
 static NSInteger accelerometerMultiplier = 15;
+static NSInteger playerMass = 80;
+static NSInteger playerCollisionBitmask = 1;
+static NSInteger playerJumpForce = 8000000;
+static NSInteger globalGravity = -4.8;
 
 #endif
