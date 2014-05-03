@@ -16,6 +16,10 @@
         
         self.currentBackground = [Background generateNewBackground];
         [self addChild:self.currentBackground];
+        
+        self.currentParallax = [Background generateNewParallax];
+        [self addChild:self.currentParallax];
+        
         Player *player = [[Player alloc] init];
         player.position = CGPointMake(100, 68);
         [self addChild:player];
@@ -153,6 +157,22 @@
         temp.position = CGPointMake(self.currentBackground.position.x + self.currentBackground.frame.size.width, 0);
         [self addChild:temp];
         self.currentBackground = temp;
+    }
+    
+    [self enumerateChildNodesWithName:parallaxName usingBlock:^(SKNode *node, BOOL *stop) {
+        node.position = CGPointMake(node.position.x - parallaxMoveSpeed * timeSinceLast, node.position.y);
+        if (node.position.x < - (node.frame.size.width + 100)) {
+            // if the node went completely off screen (with some extra pixels)
+            // remove it
+            [node removeFromParent];
+        }}];
+    
+    if (self.currentParallax.position.x < -500) {
+        // we create new background node and set it as current node
+        Background *temp = [Background generateNewParallax];
+        temp.position = CGPointMake(self.currentParallax.position.x + self.currentParallax.frame.size.width, 0);
+        [self addChild:temp];
+        self.currentParallax = temp;
     }
     
     self.score = self.score + (backgroundMoveSpeed * timeSinceLast / 100);

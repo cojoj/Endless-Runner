@@ -15,7 +15,7 @@
     Background *background = [[Background alloc] initWithImageNamed:@"background.png"];
     background.anchorPoint = CGPointMake(0, 0);
     background.name = backgroundName;
-    background.zPosition = 1.0;
+    background.zPosition = 5;
     background.position = CGPointMake(0, 0);
     background.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0, 30) toPoint:CGPointMake(background.size.width, 30)];
     background.physicsBody.collisionBitMask = playerCollisionBitmask;
@@ -27,6 +27,16 @@
     topCollider.physicsBody.collisionBitMask = 1;
     [background addChild:topCollider];
     
+    return background;
+}
+
++ (Background *)generateNewParallax
+{
+    Background *background = [[Background alloc] initWithImageNamed:@"parallax.png"];
+    background.anchorPoint = CGPointMake(0, 0);
+    background.name = parallaxName;
+    background.position = CGPointMake(0, 0);
+    background.zPosition = 4;
     return background;
 }
 

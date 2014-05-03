@@ -14,6 +14,7 @@
 @interface MyScene : SKScene
 
 @property (strong, nonatomic) Background *currentBackground;
+@property (strong, nonatomic) Background *currentParallax;
 @property (assign) CFTimeInterval lastUpdateInterval;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (assign) double score;
