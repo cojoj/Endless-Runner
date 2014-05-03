@@ -12,5 +12,6 @@
 
 @property (assign) BOOL selected;
 @property (assign) BOOL accelerating;
+@property (nonatomic,strong) NSMutableArray *runFrames;
 
 @end

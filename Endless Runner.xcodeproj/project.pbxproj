@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		703A05FB19155DFD00C010C2 /* run.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 703A05FA19155DFD00C010C2 /* run.atlas */; };
+		703A05FD19155E0800C010C2 /* jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 703A05FC19155E0800C010C2 /* jump.atlas */; };
+		703A05FF19155E0E00C010C2 /* shield.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 703A05FE19155E0E00C010C2 /* shield.atlas */; };
+		703A060119155E1600C010C2 /* deplete.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 703A060019155E1600C010C2 /* deplete.atlas */; };
 		707655691910543800B67195 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707655681910543800B67195 /* Foundation.framework */; };
 		7076556B1910543800B67195 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556A1910543800B67195 /* CoreGraphics.framework */; };
 		7076556D1910543800B67195 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7076556C1910543800B67195 /* UIKit.framework */; };
@@ -38,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		703A05FA19155DFD00C010C2 /* run.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = run.atlas; sourceTree = "<group>"; };
+		703A05FC19155E0800C010C2 /* jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = jump.atlas; sourceTree = "<group>"; };
+		703A05FE19155E0E00C010C2 /* shield.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = shield.atlas; sourceTree = "<group>"; };
+		703A060019155E1600C010C2 /* deplete.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = deplete.atlas; sourceTree = "<group>"; };
 		707655651910543800B67195 /* Endless Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		707655681910543800B67195 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7076556A1910543800B67195 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +146,10 @@
 				70DC2E711911921B0012885C /* Player.h */,
 				70DC2E721911921B0012885C /* Player.m */,
 				707655A419105CF300B67195 /* Common.h */,
+				703A060019155E1600C010C2 /* deplete.atlas */,
+				703A05FE19155E0E00C010C2 /* shield.atlas */,
+				703A05FC19155E0800C010C2 /* jump.atlas */,
+				703A05FA19155DFD00C010C2 /* run.atlas */,
 				707655871910543800B67195 /* Images.xcassets */,
 				707655711910543800B67195 /* Supporting Files */,
 			);
@@ -250,8 +262,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				707655751910543800B67195 /* InfoPlist.strings in Resources */,
+				703A05FB19155DFD00C010C2 /* run.atlas in Resources */,
 				707655881910543800B67195 /* Images.xcassets in Resources */,
 				7076557E1910543800B67195 /* Main.storyboard in Resources */,
+				703A05FF19155E0E00C010C2 /* shield.atlas in Resources */,
+				703A060119155E1600C010C2 /* deplete.atlas in Resources */,
+				703A05FD19155E0800C010C2 /* jump.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
