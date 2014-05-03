@@ -23,7 +23,12 @@
         self.physicsBody.allowsRotation = NO;
         
         [self setupAnimations];
-        [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.runFrames timePerFrame:0.05 resize:YES restore:NO]] withKey:@"running"];
+//        [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.runFrames timePerFrame:0.05 resize:YES restore:NO]] withKey:@"running"];
+        [self startRunningAnimation];
+        
+        self.shield = [[SKSpriteNode alloc] init];
+        self.shield.blendMode = SKBlendModeAdd;
+        [self addChild:self.shield];
     }
     return self;
 }
@@ -49,6 +54,23 @@
     _animationState = animationState;
 }
 
+- (void)setShielded:(BOOL)shielded
+{
+    if (shielded) {
+        if (![self.shield actionForKey:@"shieldOn"]) {
+            [self.shield runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.shieldOnFrames timePerFrame:0.1 resize:YES restore:NO]]
+                           withKey:@"shieldOn"];
+        }
+    } else if (_shield) {
+        [self blinkRed];
+        [self removeActionForKey:@"shieldOn"];
+        [self.shield runAction:[SKAction animateWithTextures:self.shieldOffFrames timePerFrame:0.15 resize:YES restore:NO]
+                       withKey:@"shieldOff"];
+    }
+    
+    _shielded = shielded;
+}
+
 - (void)setupAnimations
 {
     self.runFrames = [[NSMutableArray alloc] init];
@@ -72,6 +94,28 @@
             [self.jumpFrames addObject:tempTexture];
         }
     }
+    
+    self.shieldOnFrames = [[NSMutableArray alloc] init];
+    SKTextureAtlas *shieldOnAtlas = [SKTextureAtlas atlasNamed:@"shield"];
+    
+    for (int i = 0; i < [shieldOnAtlas.textureNames count]; i++) {
+        NSString *tempName = [NSString stringWithFormat:@"shield%.3d", i];
+        SKTexture *tempTexture = [shieldOnAtlas textureNamed:tempName];
+        if (tempTexture) {
+            [self.shieldOnFrames addObject:tempTexture];
+        }
+    }
+    
+    self.shieldOffFrames = [[NSMutableArray alloc] init];
+    SKTextureAtlas *shieldOffAtlas = [SKTextureAtlas atlasNamed:@"deplete"];
+    
+    for (int i = 0; i < [shieldOffAtlas.textureNames count]; i++) {
+        NSString *tempName = [NSString stringWithFormat:@"deplete%.3d", i];
+        SKTexture *tempTexture = [shieldOffAtlas textureNamed:tempName];
+        if (tempTexture) {
+            [self.shieldOffFrames addObject:tempTexture];
+        }
+    }
 }
 
 - (void) startJumpingAnimation
@@ -82,6 +126,7 @@
                                                 self.animationState = playerStateInAir;
                                             }]]]
                 withKey:@"jumping"];
+        self.shielded = YES;
     }
 }
 
@@ -89,12 +134,21 @@
 {
     if (![self actionForKey:@"running"]) {
         [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.runFrames timePerFrame:0.05 resize:YES restore:NO]] withKey:@"running"];
+        self.shielded = NO;
     }
 }
 
 - (void)stopRunningAnimation
 {
     [self removeActionForKey:@"running"];
+}
+
+- (void)blinkRed
+{
+    SKAction *blinkRed = [SKAction sequence:@[[SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration:0.2],
+                                              [SKAction waitForDuration:0.1],
+                                              [SKAction colorizeWithColorBlendFactor:0.0 duration:0.2]]];
+    [self runAction:blinkRed];
 }
 
 @end

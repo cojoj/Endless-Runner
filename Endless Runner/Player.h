@@ -15,5 +15,9 @@
 @property (nonatomic, strong) NSMutableArray *runFrames;
 @property (nonatomic, strong) NSMutableArray *jumpFrames;
 @property (nonatomic, assign) playerState animationState;
+@property (nonatomic, strong) NSMutableArray *shieldOnFrames;
+@property (nonatomic, strong) NSMutableArray *shieldOffFrames;
+@property (nonatomic, strong) SKSpriteNode *shield;
+@property (assign, nonatomic) BOOL shielded;
 
 @end
