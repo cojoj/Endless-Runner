@@ -12,6 +12,8 @@
 
 @property (assign) BOOL selected;
 @property (assign) BOOL accelerating;
-@property (nonatomic,strong) NSMutableArray *runFrames;
+@property (nonatomic, strong) NSMutableArray *runFrames;
+@property (nonatomic, strong) NSMutableArray *jumpFrames;
+@property (nonatomic, assign) playerState animationState;
 
 @end

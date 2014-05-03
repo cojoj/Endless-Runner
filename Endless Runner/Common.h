@@ -18,4 +18,12 @@ static NSInteger playerCollisionBitmask = 1;
 static NSInteger playerJumpForce = 8000000;
 static NSInteger globalGravity = -4.8;
 
+typedef enum playerState {
+    
+    playerStateRunning = 0,
+    playerStateJumping,
+    playerStateInAir
+    
+} playerState;
+
 #endif

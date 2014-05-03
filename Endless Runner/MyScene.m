@@ -26,6 +26,7 @@
         self.scoreLabel.color = [UIColor whiteColor];
         self.scoreLabel.position = CGPointMake(20, 300);
         self.scoreLabel.zPosition = 100;
+        
         [self addChild:self.scoreLabel];
         
         SKAction *tempAction = [SKAction runBlock:^{
@@ -35,10 +36,10 @@
         SKAction *waitAction = [SKAction waitForDuration:0.2];
         [self.scoreLabel runAction:[SKAction repeatActionForever:[SKAction sequence:@[tempAction, waitAction]]]];
         
-        self.manager = [[CMMotionManager alloc] init];
-        self.manager.accelerometerUpdateInterval = 0.1;
-        [self.manager startAccelerometerUpdates];
-        [self performSelector:@selector(adjustBaseline) withObject:nil afterDelay:0.1];
+//        self.manager = [[CMMotionManager alloc] init];
+//        self.manager.accelerometerUpdateInterval = 0.1;
+//        [self.manager startAccelerometerUpdates];
+//        [self performSelector:@selector(adjustBaseline) withObject:nil afterDelay:0.1];
         
         self.physicsWorld.gravity = CGVectorMake(0, globalGravity);
     }
@@ -91,9 +92,9 @@
 
 - (void)didMoveToView:(SKView *)view
 {
-//    UILongPressGestureRecognizer *tapper = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tappedScreen:)];
-//    tapper.minimumPressDuration = 0.1;
-//    [view addGestureRecognizer:tapper];
+    UILongPressGestureRecognizer *tapper = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tappedScreen:)];
+    tapper.minimumPressDuration = 0.1;
+    [view addGestureRecognizer:tapper];
 }
 
 - (void)tappedScreen:(UITapGestureRecognizer *)recognizer
@@ -108,19 +109,19 @@
     }
 }
 
-- (void)handleSwipeGestureRight:(UISwipeGestureRecognizer *)recognizer
-{
-    if (recognizer.state == UIGestureRecognizerStateRecognized) {
-        backgroundMoveSpeed += 50;
-    }
-}
-
-- (void)handleSwipeGestureLeft:(UISwipeGestureRecognizer *)recognizer
-{
-    if (recognizer.state == UIGestureRecognizerStateRecognized && backgroundMoveSpeed > 50) {
-        backgroundMoveSpeed -= 50;
-    }
-}
+//- (void)handleSwipeGestureRight:(UISwipeGestureRecognizer *)recognizer
+//{
+//    if (recognizer.state == UIGestureRecognizerStateRecognized) {
+//        backgroundMoveSpeed += 50;
+//    }
+//}
+//
+//- (void)handleSwipeGestureLeft:(UISwipeGestureRecognizer *)recognizer
+//{
+//    if (recognizer.state == UIGestureRecognizerStateRecognized && backgroundMoveSpeed > 50) {
+//        backgroundMoveSpeed -= 50;
+//    }
+//}
 
 - (void)willMoveFromView:(SKView *)view
 {
@@ -157,21 +158,24 @@
     self.score = self.score + (backgroundMoveSpeed * timeSinceLast / 100);
     // NSLog(@"%@", self.manager.accelerometerData);
     
-    Player *player = (Player *)[self childNodeWithName:playerName];
-    player.position = CGPointMake(player.position.x,
-                                  player.position.y - (self.manager.accelerometerData.acceleration.x - self.baseline) * accelerometerMultiplier);
-    if (player.position.y < 68) {
-        player.position = CGPointMake(player.position.x, 68);
-    }
-    
-    if (player.position.y > 252) {
-        player.position = CGPointMake(player.position.x, 252);
-    }
+//    Player *player = (Player *)[self childNodeWithName:playerName];
+//    player.position = CGPointMake(player.position.x,
+//                                  player.position.y - (self.manager.accelerometerData.acceleration.x - self.baseline) * accelerometerMultiplier);
+//    if (player.position.y < 68) {
+//        player.position = CGPointMake(player.position.x, 68);
+//    }
+//    
+//    if (player.position.y > 252) {
+//        player.position = CGPointMake(player.position.x, 252);
+//    }
     
     [self enumerateChildNodesWithName:@"player" usingBlock:^(SKNode *node, BOOL *stop) {
         Player *player = (Player *)node;
         if (player.accelerating) {
             [player.physicsBody applyForce:CGVectorMake(0, playerJumpForce * timeSinceLast)];
+            player.animationState = playerStateJumping;
+        } else if (player.position.y < 75) {
+            player.animationState = playerStateRunning;
         }
     }];
 }
