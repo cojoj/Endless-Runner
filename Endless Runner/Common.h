@@ -19,6 +19,13 @@ static NSInteger playerJumpForce = 8000000;
 static NSInteger globalGravity = -4.8;
 static NSString *parallaxName = @"parallax";
 static NSInteger parallaxMoveSpeed = 10;
+static NSInteger maximumEnemies = 3;
+static NSInteger maximumPowerups = 1;
+
+const static int playerBitmask = 1;
+const static int enemyBitmask = 2;
+const static int shieldPowerupBitmask = 4;
+const static int groundBitmask = 8;
 
 typedef enum playerState {
     

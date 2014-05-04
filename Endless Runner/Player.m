@@ -10,22 +10,21 @@
 
 @implementation Player
 
-- (instancetype)init
+-(instancetype)init
 {
     self = [super initWithImageNamed:@"character.png"];
     {
         self.name = playerName;
-        self.zPosition = 10.0;
+        self.zPosition = 10;
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.size.width, self.size.height)];
         self.physicsBody.dynamic = YES;
         self.physicsBody.mass = playerMass;
-        self.physicsBody.collisionBitMask = playerCollisionBitmask;
+        self.physicsBody.contactTestBitMask = shieldPowerupBitmask | enemyBitmask;
+        self.physicsBody.collisionBitMask = groundBitmask;
+        self.physicsBody.categoryBitMask = playerBitmask;
         self.physicsBody.allowsRotation = NO;
-        
         [self setupAnimations];
-//        [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.runFrames timePerFrame:0.05 resize:YES restore:NO]] withKey:@"running"];
         [self startRunningAnimation];
-        
         self.shield = [[SKSpriteNode alloc] init];
         self.shield.blendMode = SKBlendModeAdd;
         [self addChild:self.shield];
@@ -39,7 +38,7 @@
     return self;
 }
 
-- (void)setAnimationState:(playerState)animationState
+- (void)setAnimationState:(int)animationState
 {
     switch (animationState) {
         case playerStateJumping:
@@ -72,20 +71,17 @@
     _accelerating = accelerating;
 }
 
-- (void)setShielded:(BOOL)shielded
+- (void) setShielded:(BOOL)shielded
 {
     if (shielded) {
         if (![self.shield actionForKey:@"shieldOn"]) {
-            [self.shield runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.shieldOnFrames timePerFrame:0.1 resize:YES restore:NO]]
-                           withKey:@"shieldOn"];
+            [self.shield runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.shieldOnFrames timePerFrame:0.1 resize:YES restore:NO]] withKey:@"shieldOn"];
         }
-    } else if (_shield) {
+    } else if (_shielded) {
         [self blinkRed];
-        [self removeActionForKey:@"shieldOn"];
-        [self.shield runAction:[SKAction animateWithTextures:self.shieldOffFrames timePerFrame:0.15 resize:YES restore:NO]
-                       withKey:@"shieldOff"];
+        [self.shield removeActionForKey:@"shieldOn"];
+        [self.shield runAction:[SKAction animateWithTextures:self.shieldOffFrames timePerFrame:0.15 resize:YES restore:NO] withKey:@"shieldOff"];
     }
-    
     _shielded = shielded;
 }
 
@@ -121,6 +117,8 @@
         SKTexture *tempTexture = [shieldOnAtlas textureNamed:tempName];
         if (tempTexture) {
             [self.shieldOnFrames addObject:tempTexture];
+            [tempTexture preloadWithCompletionHandler:^{
+            }];
         }
     }
     
@@ -132,19 +130,19 @@
         SKTexture *tempTexture = [shieldOffAtlas textureNamed:tempName];
         if (tempTexture) {
             [self.shieldOffFrames addObject:tempTexture];
+            [tempTexture preloadWithCompletionHandler:^{
+            }];
         }
     }
 }
 
-- (void) startJumpingAnimation
+- (void)startJumpingAnimation
 {
     if (![self actionForKey:@"jumping"]) {
         [self runAction:[SKAction sequence:@[[SKAction animateWithTextures:self.jumpFrames timePerFrame:0.03 resize:YES restore:NO],
                                              [SKAction runBlock:^{
                                                 self.animationState = playerStateInAir;
-                                            }]]]
-                withKey:@"jumping"];
-        self.shielded = YES;
+                                            }]]] withKey:@"jumping"];
     }
 }
 
@@ -152,7 +150,6 @@
 {
     if (![self actionForKey:@"running"]) {
         [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:self.runFrames timePerFrame:0.05 resize:YES restore:NO]] withKey:@"running"];
-        self.shielded = NO;
     }
 }
 
@@ -165,8 +162,18 @@
 {
     SKAction *blinkRed = [SKAction sequence:@[[SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration:0.2],
                                               [SKAction waitForDuration:0.1],
-                                              [SKAction colorizeWithColorBlendFactor:0.0 duration:0.2]]];
+                                              [SKAction colorizeWithColorBlendFactor:0.0 duration:0.2]
+                                              ]];
     [self runAction:blinkRed];
 }
 
+- (void)takeDamage
+{
+    if (self.shielded) {
+        self.shielded = NO;
+    } else {
+        self.hidden = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerDied" object:nil];
+    }
+}
 @end

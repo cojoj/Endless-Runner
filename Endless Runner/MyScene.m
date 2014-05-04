@@ -8,10 +8,13 @@
 
 #import "MyScene.h"
 #import "Player.h"
+#import "Enemy.h"
+#import "Powerup.h"
+#import "GameOverScene.h"
 
 @implementation MyScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         
         self.currentBackground = [Background generateNewBackground];
@@ -23,6 +26,7 @@
         Player *player = [[Player alloc] init];
         player.position = CGPointMake(100, 68);
         [self addChild:player];
+        self.player = player;
         
         self.score = 0;
         self.scoreLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
@@ -40,68 +44,62 @@
         SKAction *waitAction = [SKAction waitForDuration:0.2];
         [self.scoreLabel runAction:[SKAction repeatActionForever:[SKAction sequence:@[tempAction, waitAction]]]];
         
-//        self.manager = [[CMMotionManager alloc] init];
-//        self.manager.accelerometerUpdateInterval = 0.1;
-//        [self.manager startAccelerometerUpdates];
-//        [self performSelector:@selector(adjustBaseline) withObject:nil afterDelay:0.1];
-        
         self.physicsWorld.gravity = CGVectorMake(0, globalGravity);
+        self.physicsWorld.contactDelegate = self;
+        
+        for (int i = 0; i < maximumEnemies; i++) {
+            [self addChild:[self spawnEnemy]];
+        }
+        
+        for (int i = 0; i < maximumPowerups; i++) {
+            [self addChild:[self spawnPowerup]];
+        }
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameOver) name:@"playerDied" object:nil];
+        
+        
+        // The application will crash here if your are testing on simulator or if bluetooth is turned off on device
+        //[self configureGameControllers];
+        
+        self.pauseLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        self.pauseLabel.fontSize = 55;
+        self.pauseLabel.color = [UIColor whiteColor];
+        self.pauseLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+        self.pauseLabel.zPosition = 110;
+        [self addChild:self.pauseLabel];
+        self.pauseLabel.text = @"Pause";
+        self.pauseLabel.hidden = YES;
+        
     }
     return self;
 }
 
-- (void)adjustBaseline
+
+- (void) gameOver
+{
+    GameOverScene *newScene = [[GameOverScene alloc] initWithSize:self.size];
+    SKTransition *transition = [SKTransition flipHorizontalWithDuration:0.5];
+    [self.view presentScene:newScene transition:transition];
+}
+
+- (void) adjustBaseline
 {
     self.baseline = self.manager.accelerometerData.acceleration.x;
 }
 
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    UITouch *touch = [touches anyObject];
-//    SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:[touch locationInNode:self]];
-//    
-//    if (touchedNode.name == playerName) {
-//        Player *player = (Player *)touchedNode;
-//        player.selected = YES;
-//        return;
-//    }
-//    
-//    // Animations for move up and down
-//    SKAction *moveUp = [SKAction moveBy:CGVectorMake(0, 100) duration:0.8];
-//    SKAction *moveDown = [SKAction moveBy:CGVectorMake(0, -100) duration:0.8];
-//    
-//    SKAction *seq = [SKAction sequence:@[moveUp, moveDown]];
-//    
-//    Player *player = (Player *)[self childNodeWithName:playerName];
-//    [player runAction:seq];
-//}
-//
-//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    UITouch *touch = [touches anyObject];
-//    
-//    Player *player = (Player *)[self childNodeWithName:playerName];
-//    if (player.selected) {
-//        player.position = [touch locationInNode:self];
-//    }
-//}
-//
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    Player *player = (Player *)[self childNodeWithName:playerName];
-//    if (player.selected) {
-//        player.selected = NO;
-//    }
-//}
-
-- (void)didMoveToView:(SKView *)view
+- (void) didMoveToView:(SKView *)view
 {
-    UILongPressGestureRecognizer *tapper = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tappedScreen:)];
-    tapper.minimumPressDuration = 0.1;
-    [view addGestureRecognizer:tapper];
+    self.tapper = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(tappedScreen:)];
+    self.tapper.minimumPressDuration = 0.1;
+    [view addGestureRecognizer:self.tapper];
 }
 
-- (void)tappedScreen:(UITapGestureRecognizer *)recognizer
+-(void)willMoveFromView:(SKView *)view
+{
+    [view removeGestureRecognizer:self.tapper];
+}
+
+- (void) tappedScreen:(UITapGestureRecognizer *)recognizer
 {
     Player *player = (Player *)[self childNodeWithName:@"player"];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
@@ -113,46 +111,27 @@
     }
 }
 
-//- (void)handleSwipeGestureRight:(UISwipeGestureRecognizer *)recognizer
-//{
-//    if (recognizer.state == UIGestureRecognizerStateRecognized) {
-//        backgroundMoveSpeed += 50;
-//    }
-//}
-//
-//- (void)handleSwipeGestureLeft:(UISwipeGestureRecognizer *)recognizer
-//{
-//    if (recognizer.state == UIGestureRecognizerStateRecognized && backgroundMoveSpeed > 50) {
-//        backgroundMoveSpeed -= 50;
-//    }
-//}
-
-- (void)willMoveFromView:(SKView *)view
-{
-    for (UIGestureRecognizer *recognizer in view.gestureRecognizers) {
-        [view removeGestureRecognizer:recognizer];
-    }
-}
-
--(void)update:(CFTimeInterval)currentTime
-{
-    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateInterval;
-    self.lastUpdateInterval = currentTime;
+-(void)update:(CFTimeInterval)currentTime {
     
-    if (timeSinceLast > 1) {
+    if (self.paused) {
+        return;
+    }
+    
+    CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
+    self.lastUpdateTimeInterval = currentTime;
+    if (timeSinceLast > 1) { // more than a second since last update
         timeSinceLast = 1.0 / 60.0;
-        self.lastUpdateInterval = currentTime;
+        self.lastUpdateTimeInterval = currentTime;
     }
-    
     [self enumerateChildNodesWithName:backgroundName usingBlock:^(SKNode *node, BOOL *stop) {
         node.position = CGPointMake(node.position.x - backgroundMoveSpeed * timeSinceLast, node.position.y);
-        
         if (node.position.x < - (node.frame.size.width + 100)) {
+            // if the node went completely off screen (with some extra pixels)
+            // remove it
             [node removeFromParent];
-        }
-    }];
-    
+        }}];
     if (self.currentBackground.position.x < -500) {
+        // we create new background node and set it as current node
         Background *temp = [Background generateNewBackground];
         temp.position = CGPointMake(self.currentBackground.position.x + self.currentBackground.frame.size.width, 0);
         [self addChild:temp];
@@ -166,7 +145,6 @@
             // remove it
             [node removeFromParent];
         }}];
-    
     if (self.currentParallax.position.x < -500) {
         // we create new background node and set it as current node
         Background *temp = [Background generateNewParallax];
@@ -176,18 +154,6 @@
     }
     
     self.score = self.score + (backgroundMoveSpeed * timeSinceLast / 100);
-    // NSLog(@"%@", self.manager.accelerometerData);
-    
-//    Player *player = (Player *)[self childNodeWithName:playerName];
-//    player.position = CGPointMake(player.position.x,
-//                                  player.position.y - (self.manager.accelerometerData.acceleration.x - self.baseline) * accelerometerMultiplier);
-//    if (player.position.y < 68) {
-//        player.position = CGPointMake(player.position.x, 68);
-//    }
-//    
-//    if (player.position.y > 252) {
-//        player.position = CGPointMake(player.position.x, 252);
-//    }
     
     [self enumerateChildNodesWithName:@"player" usingBlock:^(SKNode *node, BOOL *stop) {
         Player *player = (Player *)node;
@@ -198,6 +164,81 @@
             player.animationState = playerStateRunning;
         }
     }];
+    
+    [self enumerateChildNodesWithName:@"enemy" usingBlock:^(SKNode *node, BOOL *stop) {
+        Enemy *enemy = (Enemy *)node;
+        enemy.position = CGPointMake(enemy.position.x - backgroundMoveSpeed * timeSinceLast, enemy.position.y);
+        
+        if (enemy.position.x < -200) {
+            enemy.position = CGPointMake(self.size.width + arc4random() % 800, arc4random() % 240 + 40);
+            enemy.hidden = NO;
+        }
+    }];
+    
+    [self enumerateChildNodesWithName:@"shieldPowerup" usingBlock:^(SKNode *node, BOOL *stop) {
+        Powerup *shield = (Powerup *)node;
+        shield.position = CGPointMake(shield.position.x - backgroundMoveSpeed * timeSinceLast, shield.position.y);
+        
+        if (shield.position.x < -200) {
+            shield.position = CGPointMake(self.size.width + arc4random() % 100, arc4random() % 240 + 40);
+            shield.hidden = NO;
+        }
+    }];
+}
+
+
+- (Enemy *) spawnEnemy
+{
+    Enemy *temp = [[Enemy alloc] init];
+    temp.name = @"enemy";
+    temp.position = CGPointMake(self.size.width + arc4random() % 800, arc4random() % 240 + 40);
+    return temp;
+}
+
+- (Powerup *) spawnPowerup
+{
+    Powerup *temp = [[Powerup alloc] init];
+    temp.name = @"shieldPowerup";
+    temp.position = CGPointMake(self.size.width + arc4random() % 100, arc4random() % 240 + 40);
+    return temp;
+}
+
+- (void) didBeginContact:(SKPhysicsContact *)contact
+{
+    Player *player = nil;
+    
+    if (contact.bodyA.categoryBitMask == playerBitmask) {
+        player = (Player *) contact.bodyA.node;
+        if (contact.bodyB.categoryBitMask == shieldPowerupBitmask) {
+            player.shielded = YES;
+            contact.bodyB.node.hidden = YES;
+        }
+        if (contact.bodyB.categoryBitMask == enemyBitmask) {
+            [player takeDamage];
+            contact.bodyB.node.hidden = YES;
+        }
+    } else {
+        player = (Player *) contact.bodyB.node;
+        if (contact.bodyA.categoryBitMask == shieldPowerupBitmask) {
+            player.shielded = YES;
+            contact.bodyA.node.hidden = YES;
+        }
+        if (contact.bodyA.categoryBitMask == enemyBitmask) {
+            [player takeDamage];
+            contact.bodyA.node.hidden = YES;
+        }
+    }
+}
+
+- (void) togglePause
+{
+    if (self.paused) {
+        self.pauseLabel.hidden = YES;
+        self.paused = NO;
+    } else {
+        self.pauseLabel.hidden = NO;
+        self.paused = YES;
+    }
 }
 
 @end

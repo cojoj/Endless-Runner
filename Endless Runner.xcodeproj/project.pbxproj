@@ -28,8 +28,13 @@
 		707655991910543800B67195 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 707655971910543800B67195 /* InfoPlist.strings */; };
 		7076559B1910543800B67195 /* Endless_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7076559A1910543800B67195 /* Endless_RunnerTests.m */; };
 		707655A719105DB800B67195 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655A619105DB800B67195 /* Background.m */; };
-		70D488811916CC8B00B901A5 /* jet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70D4887F1916CC8B00B901A5 /* jet.sks */; };
 		70D488821916CC8B00B901A5 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D488801916CC8B00B901A5 /* spark.png */; };
+		70D488851916D1E600B901A5 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D488841916D1E600B901A5 /* Enemy.m */; };
+		70D488881916D44000B901A5 /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D488871916D44000B901A5 /* Powerup.m */; };
+		70D4888E1916DEF400B901A5 /* powerup.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70D4888D1916DEF400B901A5 /* powerup.sks */; };
+		70D488901916DEFB00B901A5 /* jet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70D4888F1916DEFB00B901A5 /* jet.sks */; };
+		70D488921916DF0200B901A5 /* enemy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70D488911916DF0200B901A5 /* enemy.sks */; };
+		70D488951916E2B000B901A5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D488941916E2B000B901A5 /* GameOverScene.m */; };
 		70DC2E731911921B0012885C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DC2E721911921B0012885C /* Player.m */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +78,16 @@
 		707655A419105CF300B67195 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		707655A519105DB800B67195 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		707655A619105DB800B67195 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
-		70D4887F1916CC8B00B901A5 /* jet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = jet.sks; sourceTree = "<group>"; };
 		70D488801916CC8B00B901A5 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		70D488831916D1E600B901A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		70D488841916D1E600B901A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
+		70D488861916D44000B901A5 /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
+		70D488871916D44000B901A5 /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
+		70D4888D1916DEF400B901A5 /* powerup.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = powerup.sks; sourceTree = "<group>"; };
+		70D4888F1916DEFB00B901A5 /* jet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = jet.sks; sourceTree = "<group>"; };
+		70D488911916DF0200B901A5 /* enemy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = enemy.sks; sourceTree = "<group>"; };
+		70D488931916E2B000B901A5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		70D488941916E2B000B901A5 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		70DC2E711911921B0012885C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		70DC2E721911921B0012885C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +151,7 @@
 		707655701910543800B67195 /* Endless Runner */ = {
 			isa = PBXGroup;
 			children = (
+				707655A419105CF300B67195 /* Common.h */,
 				707655A519105DB800B67195 /* Background.h */,
 				707655A619105DB800B67195 /* Background.m */,
 				707655791910543800B67195 /* AppDelegate.h */,
@@ -147,11 +161,18 @@
 				707655801910543800B67195 /* ViewController.m */,
 				707655821910543800B67195 /* MyScene.h */,
 				707655831910543800B67195 /* MyScene.m */,
+				70D488931916E2B000B901A5 /* GameOverScene.h */,
+				70D488941916E2B000B901A5 /* GameOverScene.m */,
 				70DC2E711911921B0012885C /* Player.h */,
 				70DC2E721911921B0012885C /* Player.m */,
-				707655A419105CF300B67195 /* Common.h */,
-				70D4887F1916CC8B00B901A5 /* jet.sks */,
+				70D488831916D1E600B901A5 /* Enemy.h */,
+				70D488841916D1E600B901A5 /* Enemy.m */,
+				70D488861916D44000B901A5 /* Powerup.h */,
+				70D488871916D44000B901A5 /* Powerup.m */,
 				70D488801916CC8B00B901A5 /* spark.png */,
+				70D488911916DF0200B901A5 /* enemy.sks */,
+				70D4888F1916DEFB00B901A5 /* jet.sks */,
+				70D4888D1916DEF400B901A5 /* powerup.sks */,
 				703A060019155E1600C010C2 /* deplete.atlas */,
 				703A05FE19155E0E00C010C2 /* shield.atlas */,
 				703A05FC19155E0800C010C2 /* jump.atlas */,
@@ -268,12 +289,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				707655751910543800B67195 /* InfoPlist.strings in Resources */,
+				70D488901916DEFB00B901A5 /* jet.sks in Resources */,
 				70D488821916CC8B00B901A5 /* spark.png in Resources */,
-				70D488811916CC8B00B901A5 /* jet.sks in Resources */,
 				703A05FB19155DFD00C010C2 /* run.atlas in Resources */,
 				707655881910543800B67195 /* Images.xcassets in Resources */,
 				7076557E1910543800B67195 /* Main.storyboard in Resources */,
+				70D4888E1916DEF400B901A5 /* powerup.sks in Resources */,
 				703A05FF19155E0E00C010C2 /* shield.atlas in Resources */,
+				70D488921916DF0200B901A5 /* enemy.sks in Resources */,
 				703A060119155E1600C010C2 /* deplete.atlas in Resources */,
 				703A05FD19155E0800C010C2 /* jump.atlas in Resources */,
 			);
@@ -295,10 +318,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				707655841910543800B67195 /* MyScene.m in Sources */,
+				70D488951916E2B000B901A5 /* GameOverScene.m in Sources */,
 				707655811910543800B67195 /* ViewController.m in Sources */,
 				7076557B1910543800B67195 /* AppDelegate.m in Sources */,
 				707655A719105DB800B67195 /* Background.m in Sources */,
+				70D488851916D1E600B901A5 /* Enemy.m in Sources */,
 				70DC2E731911921B0012885C /* Player.m in Sources */,
+				70D488881916D44000B901A5 /* Powerup.m in Sources */,
 				707655771910543800B67195 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

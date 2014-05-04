@@ -10,15 +10,19 @@
 #import "Background.h"
 @import CoreMotion;
 
-@class Background;
-@interface MyScene : SKScene
+@class Background, Player;
+@interface MyScene : SKScene <SKPhysicsContactDelegate>
 
 @property (strong, nonatomic) Background *currentBackground;
 @property (strong, nonatomic) Background *currentParallax;
-@property (assign) CFTimeInterval lastUpdateInterval;
-@property (strong, nonatomic) SKLabelNode *scoreLabel;
+@property (assign) CFTimeInterval lastUpdateTimeInterval;
 @property (assign) double score;
+@property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (strong, nonatomic) CMMotionManager *manager;
 @property (assign) float baseline;
+@property (strong, nonatomic) UILongPressGestureRecognizer *tapper;
+@property (strong, nonatomic) Player *player;
+@property (strong, nonatomic) SKLabelNode *pauseLabel;
+
 
 @end
