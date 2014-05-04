@@ -29,6 +29,12 @@
         self.shield = [[SKSpriteNode alloc] init];
         self.shield.blendMode = SKBlendModeAdd;
         [self addChild:self.shield];
+        
+        self.engineEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"jet" ofType:@"sks"]];
+        self.engineEmitter.position = CGPointMake(-12, 18);
+        self.engineEmitter.name = @"jetEmitter";
+        [self addChild:self.engineEmitter];
+        self.engineEmitter.hidden = YES;
     }
     return self;
 }
@@ -52,6 +58,18 @@
             break;
     }
     _animationState = animationState;
+}
+
+- (void)setAccelerating:(BOOL)accelerating
+{
+    if (accelerating) {
+        if (self.engineEmitter.hidden) {
+            self.engineEmitter.hidden = NO;
+        }
+    } else {
+        self.engineEmitter.hidden = YES;
+    }
+    _accelerating = accelerating;
 }
 
 - (void)setShielded:(BOOL)shielded

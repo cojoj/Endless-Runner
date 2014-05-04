@@ -11,7 +11,7 @@
 @interface Player : SKSpriteNode
 
 @property (assign) BOOL selected;
-@property (assign) BOOL accelerating;
+@property (assign, nonatomic) BOOL accelerating;
 @property (nonatomic, strong) NSMutableArray *runFrames;
 @property (nonatomic, strong) NSMutableArray *jumpFrames;
 @property (nonatomic, assign) playerState animationState;
@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *shieldOffFrames;
 @property (nonatomic, strong) SKSpriteNode *shield;
 @property (assign, nonatomic) BOOL shielded;
+@property (nonatomic, strong) SKEmitterNode *engineEmitter;
 
 @end

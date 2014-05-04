@@ -28,6 +28,8 @@
 		707655991910543800B67195 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 707655971910543800B67195 /* InfoPlist.strings */; };
 		7076559B1910543800B67195 /* Endless_RunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7076559A1910543800B67195 /* Endless_RunnerTests.m */; };
 		707655A719105DB800B67195 /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 707655A619105DB800B67195 /* Background.m */; };
+		70D488811916CC8B00B901A5 /* jet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 70D4887F1916CC8B00B901A5 /* jet.sks */; };
+		70D488821916CC8B00B901A5 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D488801916CC8B00B901A5 /* spark.png */; };
 		70DC2E731911921B0012885C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DC2E721911921B0012885C /* Player.m */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		707655A419105CF300B67195 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		707655A519105DB800B67195 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		707655A619105DB800B67195 /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
+		70D4887F1916CC8B00B901A5 /* jet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = jet.sks; sourceTree = "<group>"; };
+		70D488801916CC8B00B901A5 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		70DC2E711911921B0012885C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		70DC2E721911921B0012885C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +150,8 @@
 				70DC2E711911921B0012885C /* Player.h */,
 				70DC2E721911921B0012885C /* Player.m */,
 				707655A419105CF300B67195 /* Common.h */,
+				70D4887F1916CC8B00B901A5 /* jet.sks */,
+				70D488801916CC8B00B901A5 /* spark.png */,
 				703A060019155E1600C010C2 /* deplete.atlas */,
 				703A05FE19155E0E00C010C2 /* shield.atlas */,
 				703A05FC19155E0800C010C2 /* jump.atlas */,
@@ -262,6 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				707655751910543800B67195 /* InfoPlist.strings in Resources */,
+				70D488821916CC8B00B901A5 /* spark.png in Resources */,
+				70D488811916CC8B00B901A5 /* jet.sks in Resources */,
 				703A05FB19155DFD00C010C2 /* run.atlas in Resources */,
 				707655881910543800B67195 /* Images.xcassets in Resources */,
 				7076557E1910543800B67195 /* Main.storyboard in Resources */,
